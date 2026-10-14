@@ -53,6 +53,7 @@ place. Fix the failure and rerun `gitlarp commit` to continue from HEAD.
 
 ## Undo the last run
 
+```bash
 
 ## Install on Linux
 
