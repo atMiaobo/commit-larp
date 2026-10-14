@@ -196,6 +196,7 @@ class ModesTest(unittest.TestCase):
         self.write("file", b"one\n")
         self.larp("commit")
         original_branch = self.git("symbolic-ref", "--short", "HEAD").decode().strip()
+        self.git("switch", "-c", "other")
 
 if __name__ == "__main__":
     unittest.main()
