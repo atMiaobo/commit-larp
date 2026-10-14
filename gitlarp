@@ -15,6 +15,7 @@ die() {
 case "${1:-}" in
     -h|--help) usage; exit 0 ;;
     commit) [[ $# -eq 1 ]] || die 'commit takes no arguments.' ;;
+    undo) [[ $# -eq 1 ]] || die 'undo takes no arguments.' ;;
     mode) [[ $# -le 2 ]] || die 'usage: gitlarp mode [file|line|word]' ;;
     *) usage >&2; exit 1 ;;
 esac
