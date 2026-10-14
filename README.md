@@ -65,6 +65,7 @@ the undone changes normally remain staged, ready to commit again.
 
 Only one run is remembered. A run that makes no commits does not replace that
 record. Undo refuses if you switched branches or HEAD changed since the recorded
+run. Undoing a repo's first run returns the branch to having no commits while
 
 ## Install on Linux
 
