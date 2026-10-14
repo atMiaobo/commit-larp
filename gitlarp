@@ -122,6 +122,7 @@ def git(*args, data=None, env=None, capture=True):
     ).stdout
 
 
+
 def entry(path, env):
     record = git("ls-files", "--stage", "-z", "--", path, env=env)
     if not record:
