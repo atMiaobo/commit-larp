@@ -58,6 +58,7 @@ gitlarp undo
 ```
 
 Removes all commits from the most recent recorded `gitlarp commit` run on the
+current worktree, including a run that stopped after making some commits.
 
 ## Install on Linux
 
