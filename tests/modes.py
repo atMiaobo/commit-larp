@@ -227,6 +227,7 @@ class ModesTest(unittest.TestCase):
         hook.write_text("#!/usr/bin/env bash\n[[ $(git rev-list --count HEAD) -lt 2 ]]\n")
         hook.chmod(0o755)
         self.assertNotEqual(self.larp("commit", check=False).returncode, 0)
+        self.assertEqual(self.count(), 2)
 
 if __name__ == "__main__":
     unittest.main()
