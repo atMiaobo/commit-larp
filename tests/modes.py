@@ -160,6 +160,7 @@ class ModesTest(unittest.TestCase):
         staged = self.git("write-tree")
         self.larp("undo")
         self.assertEqual(self.git("rev-parse", "HEAD"), base)
+        self.assertEqual(self.git("write-tree"), staged)
 
 if __name__ == "__main__":
     unittest.main()
