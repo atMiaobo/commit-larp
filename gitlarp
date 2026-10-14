@@ -2,7 +2,7 @@
 set -euo pipefail
 
 usage() {
-    printf '%s\n' 'Usage: gitlarp commit' '       gitlarp mode [file|line|word]' '       gitlarp --help' '' \
+    printf '%s\n' 'Usage: gitlarp commit' '       gitlarp undo' '       gitlarp mode [file|line|word]' '       gitlarp --help' '' \
         'Commit changes using the repository mode (default: file).' \
         'Includes staged, unstaged, deleted, and untracked files; respects .gitignore.'
 }
