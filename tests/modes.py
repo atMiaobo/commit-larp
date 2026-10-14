@@ -153,6 +153,7 @@ class ModesTest(unittest.TestCase):
         self.write("new", b"new text\n")
         self.larp("commit")
         self.assertGreater(self.count(), 1)
+        self.write("new", b"later staged edit\n")
 
 if __name__ == "__main__":
     unittest.main()
