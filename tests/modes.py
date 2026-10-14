@@ -186,6 +186,7 @@ class ModesTest(unittest.TestCase):
                 staged = self.git("write-tree")
                 branch = self.git("symbolic-ref", "HEAD")
                 self.larp("undo")
+                self.assertNotEqual(self.command("git", "rev-parse", "--verify", "HEAD", check=False).returncode, 0)
 
 if __name__ == "__main__":
     unittest.main()
