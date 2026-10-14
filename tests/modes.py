@@ -192,6 +192,7 @@ class ModesTest(unittest.TestCase):
                 self.assertEqual((self.root / "file").read_bytes(), b"one two\nthree four\n")
 
     def test_undo_refuses_changed_head_and_branch(self):
+        self.assertNotEqual(self.larp("undo", check=False).returncode, 0)
 
 if __name__ == "__main__":
     unittest.main()
