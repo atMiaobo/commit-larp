@@ -1,6 +1,6 @@
 # gitlarp
 
-Tiny changes. Many One commit. Numbers go up.
+Tiny changes. Many commits. commit. Numbers go up.
 
 ```bash
 gitlarp commit
