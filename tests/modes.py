@@ -225,6 +225,7 @@ class ModesTest(unittest.TestCase):
         self.write("new", b"one two three")
         hook = self.root / ".git/hooks/pre-commit"
         hook.write_text("#!/usr/bin/env bash\n[[ $(git rev-list --count HEAD) -lt 2 ]]\n")
+        hook.chmod(0o755)
 
 if __name__ == "__main__":
     unittest.main()
