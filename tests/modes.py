@@ -150,6 +150,7 @@ class ModesTest(unittest.TestCase):
         base = self.git("rev-parse", "HEAD")
         self.larp("mode", mode)
         self.write("base", b"updated text\nextra line\n")
+        self.write("new", b"new text\n")
 
 if __name__ == "__main__":
     unittest.main()
