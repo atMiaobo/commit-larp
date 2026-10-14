@@ -204,6 +204,7 @@ class ModesTest(unittest.TestCase):
         self.assertNotEqual(self.larp("undo", check=False).returncode, 0)
         self.assertEqual(self.git("rev-parse", "HEAD"), tip)
 
+    def test_noop_and_failed_run_preserve_previous_undo(self):
 
 if __name__ == "__main__":
     unittest.main()
