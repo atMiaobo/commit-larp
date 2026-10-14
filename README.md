@@ -12,6 +12,43 @@ changed file, with messages such as `Add hello.txt`, `Update src/main.rs`, or
 ignored files stay ignored. A partially staged file is committed in full.
 Other files' staged changes stay separate until their turn.
 
+## Commit modes
+
+```bash
+gitlarp mode file
+gitlarp mode line
+gitlarp mode word
+gitlarp mode
+gitlarp commit
+```
+
+Choose one mode, then run `gitlarp commit` as usual. `gitlarp mode` without an
+argument displays the current mode. The setting is saved locally as
+`gitlarp.mode` in Git configuration and does not get committed or shared with
+other clones. The default is `file`.
+
+- `file`: one commit per changed file, as before.
+- `line`: one commit per inserted, deleted, or replaced text line. Replacing
+  one old line with one new line counts as one change.
+- `word`: one commit per inserted, deleted, or replaced whitespace-delimited
+  token. Spaces, tabs, and newlines are separators; punctuation stays attached
+  to its word. Leading whitespace travels with its token, and trailing
+  whitespace is a separate token so formatting changes are preserved.
+
+For example, changing `hello world` to `goodbye universe` makes one commit in
+line mode, or two in word mode. Unchanged text produces no additional commits.
+New files are built up incrementally and deleted files are removed incrementally.
+Binary/non-UTF-8 files, symlinks, submodule pointers, empty files, and changes
+only to executable permissions use a single commit per file.
+
+Line and word modes require Python 3 (included by the Nix and Arch packages).
+They build intermediate versions in a temporary Git index without rewriting
+your working files. Hooks inspecting working files therefore see the final
+contents; hooks inspecting staged contents see the intermediate step. Intermediate
+commits may contain incomplete code. If a hook or signing fails, earlier commits
+remain and staging may differ from HEAD; your working-file contents remain in
+place. Fix the failure and rerun `gitlarp commit` to continue from HEAD.
+
 ## Install on Linux
 
 Clone this project and install:
@@ -25,7 +62,8 @@ sudo make install
 This installs `gitlarp` into `/usr/local/bin` for all users. With that directory
 on your `PATH` (the usual Linux default), run `gitlarp commit` from any Git repo;
 you no longer need the source directory. Requires Bash, Git, and coreutils at
-runtime, plus Make for installation. No compilation is needed.
+runtime, plus Python 3 for line/word modes and Make for installation.
+No compilation is needed.
 Without Make, the equivalent install command is
 `sudo install -Dm755 gitlarp /usr/local/bin/gitlarp`.
 
