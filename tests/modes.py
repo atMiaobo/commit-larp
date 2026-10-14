@@ -207,6 +207,7 @@ class ModesTest(unittest.TestCase):
     def test_noop_and_failed_run_preserve_previous_undo(self):
         self.write("file", b"one\n")
         self.larp("commit")
+        self.larp("commit")
 
 if __name__ == "__main__":
     unittest.main()
