@@ -51,6 +51,7 @@ branch=$(git symbolic-ref --quiet HEAD) || die 'check out a branch first (HEAD i
 state_dir=$(git rev-parse --git-path gitlarp)
 state_file="$state_dir/last-run"
 
+
 if upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null); then
     read -r ahead behind < <(git rev-list --left-right --count "HEAD...$upstream")
     printf 'Upstream %s (cached): %s ahead, %s behind.\n' "$upstream" "$ahead" "$behind"
