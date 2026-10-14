@@ -156,6 +156,7 @@ class ModesTest(unittest.TestCase):
         self.write("new", b"later staged edit\n")
         self.git("add", "new")
         self.write("new", b"later unstaged edit\n")
+        self.write("untracked", b"keep me\n")
 
 if __name__ == "__main__":
     unittest.main()
