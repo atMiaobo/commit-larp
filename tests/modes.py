@@ -165,6 +165,7 @@ class ModesTest(unittest.TestCase):
         self.assertEqual((self.root / "new").read_bytes(), b"later unstaged edit\n")
         self.assertEqual((self.root / "untracked").read_bytes(), b"keep me\n")
         self.assertNotEqual(self.larp("undo", check=False).returncode, 0)
+        self.larp("commit")
 
 if __name__ == "__main__":
     unittest.main()
