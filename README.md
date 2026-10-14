@@ -55,6 +55,7 @@ place. Fix the failure and rerun `gitlarp commit` to continue from HEAD.
 
 ```bash
 gitlarp undo
+```
 
 ## Install on Linux
 
