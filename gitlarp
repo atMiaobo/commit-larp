@@ -47,7 +47,7 @@ for operation in MERGE_HEAD CHERRY_PICK_HEAD REVERT_HEAD rebase-merge rebase-app
     [[ ! -e $(git rev-parse --git-path "$operation") ]] || die 'finish the current merge, rebase, cherry-pick, or revert first.'
 done
 [[ -z $(git ls-files --unmerged) ]] || die 'resolve conflicts first.'
-git symbolic-ref --quiet HEAD >/dev/null || die 'check out a branch first (HEAD is detached).'
+branch=$(git symbolic-ref --quiet HEAD) || die 'check out a branch first (HEAD is detached).'
 
 if upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null); then
     read -r ahead behind < <(git rev-list --left-right --count "HEAD...$upstream")
