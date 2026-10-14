@@ -168,6 +168,7 @@ class ModesTest(unittest.TestCase):
         self.larp("commit")
         self.assert_clean()
 
+    def test_undo_file(self):
 
 if __name__ == "__main__":
     unittest.main()
