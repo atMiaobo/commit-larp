@@ -229,6 +229,7 @@ class ModesTest(unittest.TestCase):
         self.assertNotEqual(self.larp("commit", check=False).returncode, 0)
         self.assertEqual(self.count(), 2)
         self.larp("undo")
+        self.assertEqual(self.git("rev-parse", "HEAD"), base)
 
 if __name__ == "__main__":
     unittest.main()
