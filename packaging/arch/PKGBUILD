@@ -1,0 +1,27 @@
+pkgname=gitlarp-git
+pkgver=r0.g0000000
+pkgrel=1
+pkgdesc='Commit each changed file separately with automatic messages'
+arch=('any')
+url='https://github.com/atMiaobo/commit_larp'
+depends=('bash' 'git' 'coreutils')
+provides=('gitlarp')
+conflicts=('gitlarp')
+source=('gitlarp::git+https://github.com/atMiaobo/commit_larp.git#branch=main')
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/gitlarp"
+    printf 'r%s.g%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+check() {
+    cd "$srcdir/gitlarp"
+    bash tests/integration.sh
+}
+
+package() {
+    cd "$srcdir/gitlarp"
+    install -Dm755 gitlarp "$pkgdir/usr/bin/gitlarp"
+    install -Dm644 README.md "$pkgdir/usr/share/doc/gitlarp/README.md"
+}
