@@ -67,6 +67,7 @@ Only one run is remembered. A run that makes no commits does not replace that
 record. Undo refuses if you switched branches or HEAD changed since the recorded
 run. Undoing a repo's first run returns the branch to having no commits while
 keeping its files and index. Runs made before this feature was installed cannot
+be undone with this command.
 
 ## Install on Linux
 
