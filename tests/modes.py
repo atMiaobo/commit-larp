@@ -204,5 +204,6 @@ class ModesTest(unittest.TestCase):
         self.assertNotEqual(self.larp("undo", check=False).returncode, 0)
         self.assertEqual(self.git("rev-parse", "HEAD"), tip)
 
+
 if __name__ == "__main__":
     unittest.main()
