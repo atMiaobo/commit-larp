@@ -177,5 +177,6 @@ class ModesTest(unittest.TestCase):
     def test_undo_word(self):
         self.assert_undo_mode("word")
 
+
 if __name__ == "__main__":
     unittest.main()
