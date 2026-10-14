@@ -159,6 +159,7 @@ class ModesTest(unittest.TestCase):
         self.write("untracked", b"keep me\n")
         staged = self.git("write-tree")
         self.larp("undo")
+        self.assertEqual(self.git("rev-parse", "HEAD"), base)
 
 if __name__ == "__main__":
     unittest.main()
