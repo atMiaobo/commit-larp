@@ -171,5 +171,6 @@ class ModesTest(unittest.TestCase):
     def test_undo_file(self):
         self.assert_undo_mode("file")
 
+
 if __name__ == "__main__":
     unittest.main()
