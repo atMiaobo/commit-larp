@@ -180,6 +180,7 @@ class ModesTest(unittest.TestCase):
     def test_undo_first_run(self):
         for mode in ("file", "line", "word"):
             with self.subTest(mode=mode):
+                self.larp("mode", mode)
 
 if __name__ == "__main__":
     unittest.main()
