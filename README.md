@@ -69,6 +69,7 @@ run. Undoing a repo's first run returns the branch to having no commits while
 keeping its files and index. Runs made before this feature was installed cannot
 be undone with this command.
 
+
 ## Install on Linux
 
 Clone this project and install:
