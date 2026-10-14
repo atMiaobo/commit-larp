@@ -127,6 +127,7 @@ def record_run():
     current = git("rev-parse", "--verify", "HEAD").decode().strip()
     with open(state_temp, "w", encoding="utf-8", errors="surrogateescape") as record:
         record.write(f"{branch}\n{start_head}\n{current}\n")
+    os.replace(state_temp, state_file)
 
 
 def entry(path, env):
