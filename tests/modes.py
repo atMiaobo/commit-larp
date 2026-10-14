@@ -158,6 +158,7 @@ class ModesTest(unittest.TestCase):
         self.write("new", b"later unstaged edit\n")
         self.write("untracked", b"keep me\n")
         staged = self.git("write-tree")
+        self.larp("undo")
 
 if __name__ == "__main__":
     unittest.main()
