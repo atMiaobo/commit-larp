@@ -93,6 +93,7 @@ fi
 
 git var GIT_AUTHOR_IDENT >/dev/null
 git var GIT_COMMITTER_IDENT >/dev/null
+start_head=$(git rev-parse --verify HEAD 2>/dev/null) || start_head=unborn
 if [[ $mode != file ]]; then
     command -v python3 >/dev/null || die 'line and word modes require Python 3.'
     python3 - "$mode" "$status_file" <<'PY'
