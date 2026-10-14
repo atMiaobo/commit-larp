@@ -168,5 +168,6 @@ class ModesTest(unittest.TestCase):
         self.larp("commit")
         self.assert_clean()
 
+
 if __name__ == "__main__":
     unittest.main()
