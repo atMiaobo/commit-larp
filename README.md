@@ -42,6 +42,12 @@ Re-run the install command after updating the source to upgrade.
 On NixOS, use the Nix package below so dependencies and command discovery are
 managed by Nix.
 
+## Arch Linux packaging
+
+A development package recipe is available in
+[`packaging/arch`](packaging/arch/README.md), including build and AUR submission
+instructions. It is not published to the AUR or official repositories yet.
+
 ## Install on NixOS
 
 With flakes enabled, from this directory:
