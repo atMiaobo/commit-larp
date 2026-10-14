@@ -211,6 +211,7 @@ class ModesTest(unittest.TestCase):
         self.write("file", b"two\n")
         hook = self.root / ".git/hooks/pre-commit"
         hook.write_text("#!/usr/bin/env bash\nexit 1\n")
+        hook.chmod(0o755)
 
 if __name__ == "__main__":
     unittest.main()
