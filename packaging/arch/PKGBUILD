@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='Commit each changed file separately with automatic messages'
 arch=('any')
 url='https://github.com/atMiaobo/commit_larp'
-depends=('bash' 'git' 'coreutils')
+depends=('bash' 'git' 'coreutils' 'python')
 provides=('gitlarp')
 conflicts=('gitlarp')
 source=('gitlarp::git+https://github.com/atMiaobo/commit_larp.git#branch=main')
