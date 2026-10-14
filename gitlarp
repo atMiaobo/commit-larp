@@ -224,6 +224,7 @@ def run():
             if not had_steps:
                 put(path, target, env)
                 git("commit", "-m", f"{action} {path!r}", env=env, capture=False)
+                record_run()
                 committed += 1
             put(path, target)
     print(f"Created {committed} commit(s) in {mode} mode.")
