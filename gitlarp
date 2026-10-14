@@ -62,6 +62,7 @@ if [[ $1 == undo ]]; then
         count=$(git rev-list --count "$current")
         git update-ref -m 'gitlarp undo' -d "$branch" "$current"
     else
+        git merge-base --is-ancestor "${saved[1]}" "$current" || die 'the recorded starting commit is not an ancestor of HEAD.'
 
 if upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null); then
     read -r ahead behind < <(git rev-list --left-right --count "HEAD...$upstream")
