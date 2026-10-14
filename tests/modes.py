@@ -214,6 +214,7 @@ class ModesTest(unittest.TestCase):
         hook.chmod(0o755)
         self.assertNotEqual(self.larp("commit", check=False).returncode, 0)
         self.larp("undo")
+        self.assertNotEqual(self.command("git", "rev-parse", "--verify", "HEAD", check=False).returncode, 0)
 
 if __name__ == "__main__":
     unittest.main()
