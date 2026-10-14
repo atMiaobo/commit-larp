@@ -213,6 +213,7 @@ class ModesTest(unittest.TestCase):
         hook.write_text("#!/usr/bin/env bash\nexit 1\n")
         hook.chmod(0o755)
         self.assertNotEqual(self.larp("commit", check=False).returncode, 0)
+        self.larp("undo")
 
 if __name__ == "__main__":
     unittest.main()
