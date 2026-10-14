@@ -51,6 +51,7 @@ commits may contain incomplete code. If a hook or signing fails, earlier commits
 remain and staging may differ from HEAD; your working-file contents remain in
 place. Fix the failure and rerun `gitlarp commit` to continue from HEAD.
 
+## Undo the last run
 
 ## Install on Linux
 
