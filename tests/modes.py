@@ -210,6 +210,7 @@ class ModesTest(unittest.TestCase):
         self.larp("commit")
         self.write("file", b"two\n")
         hook = self.root / ".git/hooks/pre-commit"
+        hook.write_text("#!/usr/bin/env bash\nexit 1\n")
 
 if __name__ == "__main__":
     unittest.main()
