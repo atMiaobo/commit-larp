@@ -198,6 +198,7 @@ class ModesTest(unittest.TestCase):
         original_branch = self.git("symbolic-ref", "--short", "HEAD").decode().strip()
         self.git("switch", "-c", "other")
         self.assertNotEqual(self.larp("undo", check=False).returncode, 0)
+        self.git("switch", original_branch)
 
 if __name__ == "__main__":
     unittest.main()
