@@ -199,6 +199,7 @@ class ModesTest(unittest.TestCase):
         self.git("switch", "-c", "other")
         self.assertNotEqual(self.larp("undo", check=False).returncode, 0)
         self.git("switch", original_branch)
+        self.git("commit", "--allow-empty", "-m", "unrelated")
 
 if __name__ == "__main__":
     unittest.main()
