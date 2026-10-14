@@ -218,6 +218,7 @@ class ModesTest(unittest.TestCase):
         self.assertEqual((self.root / "file").read_bytes(), b"two\n")
 
     def test_undo_partial_run(self):
+        self.write("base", b"base\n")
 
 if __name__ == "__main__":
     unittest.main()
