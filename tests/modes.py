@@ -181,6 +181,7 @@ class ModesTest(unittest.TestCase):
         for mode in ("file", "line", "word"):
             with self.subTest(mode=mode):
                 self.larp("mode", mode)
+                self.write("file", b"one two\nthree four\n")
 
 if __name__ == "__main__":
     unittest.main()
