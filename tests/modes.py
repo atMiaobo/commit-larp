@@ -220,6 +220,7 @@ class ModesTest(unittest.TestCase):
     def test_undo_partial_run(self):
         self.write("base", b"base\n")
         self.larp("commit")
+        base = self.git("rev-parse", "HEAD")
 
 if __name__ == "__main__":
     unittest.main()
