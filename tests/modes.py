@@ -162,6 +162,7 @@ class ModesTest(unittest.TestCase):
         self.assertEqual(self.git("rev-parse", "HEAD"), base)
         self.assertEqual(self.git("write-tree"), staged)
         self.assertEqual((self.root / "base").read_bytes(), b"updated text\nextra line\n")
+        self.assertEqual((self.root / "new").read_bytes(), b"later unstaged edit\n")
 
 if __name__ == "__main__":
     unittest.main()
