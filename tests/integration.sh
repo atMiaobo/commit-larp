@@ -60,3 +60,4 @@ fi
 rm "$(git rev-parse --git-path MERGE_HEAD)"
 [[ $(git rev-list --count HEAD) -eq 8 ]]
 printf 'All integration checks passed.\n'
+python3 "$script_dir/tests/modes.py"
