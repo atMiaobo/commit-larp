@@ -58,6 +58,7 @@ if [[ $1 == undo ]]; then
     [[ $branch == "${saved[0]}" ]] || die 'switch back to the branch of the last gitlarp run first.'
     current=$(git rev-parse --verify HEAD) || die 'the branch has no commits to undo.'
     [[ $current == "${saved[2]}" ]] || die 'HEAD changed since the last gitlarp run; refusing to undo unrelated history.'
+    if [[ ${saved[1]} == unborn ]]; then
 
 if upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null); then
     read -r ahead behind < <(git rev-list --left-right --count "HEAD...$upstream")
