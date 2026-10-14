@@ -148,6 +148,7 @@ class ModesTest(unittest.TestCase):
         self.write("base", b"original\n")
         self.larp("commit")
         base = self.git("rev-parse", "HEAD")
+        self.larp("mode", mode)
 
 if __name__ == "__main__":
     unittest.main()
