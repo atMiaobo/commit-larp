@@ -147,6 +147,7 @@ class ModesTest(unittest.TestCase):
     def assert_undo_mode(self, mode):
         self.write("base", b"original\n")
         self.larp("commit")
+        base = self.git("rev-parse", "HEAD")
 
 if __name__ == "__main__":
     unittest.main()
