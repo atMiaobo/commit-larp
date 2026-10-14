@@ -57,6 +57,7 @@ place. Fix the failure and rerun `gitlarp commit` to continue from HEAD.
 gitlarp undo
 ```
 
+Removes all commits from the most recent recorded `gitlarp commit` run on the
 
 ## Install on Linux
 
