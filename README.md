@@ -70,6 +70,7 @@ keeping its files and index. Runs made before this feature was installed cannot
 be undone with this command.
 
 Undo changes local history only; it does not undo a push. Use it before publishing
+the commits. Records live inside Git's metadata directory and are not committed.
 
 ## Install on Linux
 
