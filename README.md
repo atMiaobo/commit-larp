@@ -37,7 +37,7 @@ other clones. The default is `file`.
 
 For example, changing `hello world` to `goodbye universe` makes one commit in
 line mode, or two in word mode. Unchanged text produces no additional commits.
-Try editing a sentence in this
+Try editing a sentence in this README,
 New files are built up incrementally and deleted files are removed incrementally.
 Binary/non-UTF-8 files, symlinks, submodule pointers, empty files, and changes
 only to executable permissions use a single commit per file.
