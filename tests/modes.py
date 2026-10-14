@@ -194,6 +194,7 @@ class ModesTest(unittest.TestCase):
     def test_undo_refuses_changed_head_and_branch(self):
         self.assertNotEqual(self.larp("undo", check=False).returncode, 0)
         self.write("file", b"one\n")
+        self.larp("commit")
 
 if __name__ == "__main__":
     unittest.main()
