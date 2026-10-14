@@ -155,6 +155,7 @@ class ModesTest(unittest.TestCase):
         self.assertGreater(self.count(), 1)
         self.write("new", b"later staged edit\n")
         self.git("add", "new")
+        self.write("new", b"later unstaged edit\n")
 
 if __name__ == "__main__":
     unittest.main()
