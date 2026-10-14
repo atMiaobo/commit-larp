@@ -157,6 +157,7 @@ class ModesTest(unittest.TestCase):
         self.git("add", "new")
         self.write("new", b"later unstaged edit\n")
         self.write("untracked", b"keep me\n")
+        staged = self.git("write-tree")
 
 if __name__ == "__main__":
     unittest.main()
