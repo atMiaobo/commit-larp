@@ -178,6 +178,7 @@ class ModesTest(unittest.TestCase):
         self.assert_undo_mode("word")
 
     def test_undo_first_run(self):
+        for mode in ("file", "line", "word"):
 
 if __name__ == "__main__":
     unittest.main()
