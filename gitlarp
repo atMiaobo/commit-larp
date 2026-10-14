@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+    printf '%s\n' 'Usage: gitlarp commit' '       gitlarp --help' '' \
+        'Commit every changed file separately with an automatic message.' \
+        'Includes staged, unstaged, deleted, and untracked files; respects .gitignore.'
+}
+
+die() {
+    printf 'gitlarp: %s\n' "$*" >&2
+    exit 1
+}
+
+case "${1:-}" in
+    -h|--help) usage; exit 0 ;;
+    commit) [[ $# -eq 1 ]] || die 'commit takes no arguments.' ;;
+    *) usage >&2; exit 1 ;;
+esac
+
+command -v git >/dev/null || die 'git is required.'
+[[ -z ${GIT_INDEX_FILE:-} ]] || die 'custom GIT_INDEX_FILE is not supported.'
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || die 'run this inside a Git repository.'
+cd "$repo_root"
+export GIT_LITERAL_PATHSPECS=1
+
+for operation in MERGE_HEAD CHERRY_PICK_HEAD REVERT_HEAD rebase-merge rebase-apply sequencer; do
+    [[ ! -e $(git rev-parse --git-path "$operation") ]] || die 'finish the current merge, rebase, cherry-pick, or revert first.'
+done
+[[ -z $(git ls-files --unmerged) ]] || die 'resolve conflicts first.'
+git symbolic-ref --quiet HEAD >/dev/null || die 'check out a branch first (HEAD is detached).'
+
+if upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null); then
+    read -r ahead behind < <(git rev-list --left-right --count "HEAD...$upstream")
+    printf 'Upstream %s (cached): %s ahead, %s behind.\n' "$upstream" "$ahead" "$behind"
+else
+    printf 'No upstream configured; checking local changes.\n'
+fi
+
+status_file=$(mktemp)
+trap 'rm -f -- "$status_file"' EXIT
+git -c status.renames=false status --porcelain=v1 -z --untracked-files=all --ignore-submodules=none > "$status_file"
+paths=()
+while IFS= read -r -d '' entry; do
+    paths+=("${entry:3}")
+done < "$status_file"
+
+if [[ ${#paths[@]} -eq 0 ]]; then
+    printf 'Nothing to commit.\n'
+    exit 0
+fi
+
+git var GIT_AUTHOR_IDENT >/dev/null
+git var GIT_COMMITTER_IDENT >/dev/null
+committed=0
+for path in "${paths[@]}"; do
+    if [[ ! -e "$path" && ! -L "$path" ]]; then
+        action=Delete
+    elif git cat-file -e "HEAD:$path" 2>/dev/null; then
+        action=Update
+    else
+        action=Add
+    fi
+    git add -A -- "$path"
+    if git diff --cached --quiet -- "$path"; then
+        printf 'Skipping %q (no committable change).\n' "$path"
+        continue
+    fi
+    printf -v display_path '%q' "$path"
+    git commit --only -m "$action $display_path" -- "$path"
+    committed=$((committed + 1))
+done
+printf 'Created %s commit(s).\n' "$committed"
