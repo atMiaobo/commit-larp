@@ -191,6 +191,7 @@ class ModesTest(unittest.TestCase):
                 self.assertEqual(self.git("write-tree"), staged)
                 self.assertEqual((self.root / "file").read_bytes(), b"one two\nthree four\n")
 
+    def test_undo_refuses_changed_head_and_branch(self):
 
 if __name__ == "__main__":
     unittest.main()
