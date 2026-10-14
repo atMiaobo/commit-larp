@@ -64,6 +64,7 @@ if [[ $1 == undo ]]; then
     else
         git merge-base --is-ancestor "${saved[1]}" "$current" || die 'the recorded starting commit is not an ancestor of HEAD.'
         count=$(git rev-list --count "${saved[1]}..$current")
+        git reset --soft "${saved[1]}"
 
 if upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null); then
     read -r ahead behind < <(git rev-list --left-right --count "HEAD...$upstream")
