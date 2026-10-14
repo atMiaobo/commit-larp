@@ -12,6 +12,36 @@ changed file, with messages such as `Add hello.txt`, `Update src/main.rs`, or
 ignored files stay ignored. A partially staged file is committed in full.
 Other files' staged changes stay separate until their turn.
 
+## Install on Linux
+
+Clone this project and install:
+
+```bash
+git clone https://github.com/atMiaobo/commit_larp.git
+cd commit_larp
+sudo make install
+```
+
+This installs `gitlarp` into `/usr/local/bin` for all users. With that directory
+on your `PATH` (the usual Linux default), run `gitlarp commit` from any Git repo;
+you no longer need the source directory. Requires Bash, Git, and coreutils at
+runtime, plus Make for installation. No compilation is needed.
+Without Make, the equivalent install command is
+`sudo install -Dm755 gitlarp /usr/local/bin/gitlarp`.
+
+For a user-only installation without sudo:
+
+```bash
+make install PREFIX="$HOME/.local"
+```
+
+Ensure `$HOME/.local/bin` is on your `PATH`. To uninstall, use
+`sudo make uninstall`, or `make uninstall PREFIX="$HOME/.local"` respectively.
+Re-run the install command after updating the source to upgrade.
+
+On NixOS, use the Nix package below so dependencies and command discovery are
+managed by Nix.
+
 ## Install on NixOS
 
 With flakes enabled, from this directory:
@@ -21,7 +51,8 @@ nix run path:. -- --help
 nix profile install path:.
 ```
 
-Then use `gitlarp commit` in any repository. The first flake command resolves
+This installs the command on your user's `PATH`, so you can use `gitlarp commit`
+in any repository. The first flake command resolves
 nixpkgs and creates `flake.lock`; keep that file in Git for reproducible builds.
 The explicit `path:.` also includes files that are not yet tracked by Git.
 
@@ -33,8 +64,9 @@ nix-build
 nix-env -i -f .
 ```
 
-For a declarative installation, put this directory somewhere persistent and add
-the package to your NixOS configuration:
+For a **system-wide installation for all users**, put this directory somewhere
+persistent and add the package to your NixOS configuration (usually
+`/etc/nixos/configuration.nix`):
 
 ```nix
 environment.systemPackages = [
@@ -42,9 +74,10 @@ environment.systemPackages = [
 ];
 ```
 
-Then rebuild your NixOS configuration as usual. Alternatively, put the executable
-`gitlarp` script in a directory on your `PATH`; it needs Bash, Git, and coreutils.
-You can try it immediately with `bash /absolute/path/to/commit_larp/gitlarp commit`.
+Apply it with `sudo nixos-rebuild switch` (using your usual `--flake` argument
+if your system configuration uses flakes). Every user can then run
+`gitlarp commit` from any Git repository. Nix copies the program into its store;
+the source directory is only needed again when rebuilding or updating.
 
 ## Try it in this project
 
