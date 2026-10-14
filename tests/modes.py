@@ -144,6 +144,7 @@ class ModesTest(unittest.TestCase):
         self.assertEqual(self.count(), 3)
         self.assert_clean()
 
+    def assert_undo_mode(self, mode):
 
 if __name__ == "__main__":
     unittest.main()
