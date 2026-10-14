@@ -101,6 +101,7 @@ trap 'rm -f -- "$status_file" "$state_temp"' EXIT
 record_run() {
     printf '%s\n' "$branch" "$start_head" "$(git rev-parse --verify HEAD)" > "$state_temp"
     mv -f -- "$state_temp" "$state_file"
+}
 if [[ $mode != file ]]; then
     command -v python3 >/dev/null || die 'line and word modes require Python 3.'
     python3 - "$mode" "$status_file" <<'PY'
