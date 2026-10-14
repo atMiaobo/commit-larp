@@ -219,6 +219,7 @@ def run():
                     intermediate = ((target or original)[0], blob)
                 put(path, intermediate, env)
                 git("commit", "-m", f"{action} {path!r} ({mode} {number}/{total})", env=env, capture=False)
+                record_run()
                 committed += 1
             if not had_steps:
                 put(path, target, env)
