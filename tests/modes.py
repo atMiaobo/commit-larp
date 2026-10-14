@@ -208,6 +208,7 @@ class ModesTest(unittest.TestCase):
         self.write("file", b"one\n")
         self.larp("commit")
         self.larp("commit")
+        self.write("file", b"two\n")
 
 if __name__ == "__main__":
     unittest.main()
