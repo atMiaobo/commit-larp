@@ -205,6 +205,7 @@ class ModesTest(unittest.TestCase):
         self.assertEqual(self.git("rev-parse", "HEAD"), tip)
 
     def test_noop_and_failed_run_preserve_previous_undo(self):
+        self.write("file", b"one\n")
 
 if __name__ == "__main__":
     unittest.main()
