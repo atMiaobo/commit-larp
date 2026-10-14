@@ -125,6 +125,7 @@ def git(*args, data=None, env=None, capture=True):
 def record_run():
     state_file, state_temp, branch, start_head = sys.argv[3:7]
     current = git("rev-parse", "--verify", "HEAD").decode().strip()
+    with open(state_temp, "w", encoding="utf-8", errors="surrogateescape") as record:
 
 
 def entry(path, env):
