@@ -183,6 +183,7 @@ class ModesTest(unittest.TestCase):
                 self.larp("mode", mode)
                 self.write("file", b"one two\nthree four\n")
                 self.larp("commit")
+                staged = self.git("write-tree")
 
 if __name__ == "__main__":
     unittest.main()
