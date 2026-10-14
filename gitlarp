@@ -48,6 +48,7 @@ for operation in MERGE_HEAD CHERRY_PICK_HEAD REVERT_HEAD rebase-merge rebase-app
 done
 [[ -z $(git ls-files --unmerged) ]] || die 'resolve conflicts first.'
 branch=$(git symbolic-ref --quiet HEAD) || die 'check out a branch first (HEAD is detached).'
+state_dir=$(git rev-parse --git-path gitlarp)
 
 if upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null); then
     read -r ahead behind < <(git rev-list --left-right --count "HEAD...$upstream")
