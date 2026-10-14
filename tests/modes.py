@@ -195,6 +195,7 @@ class ModesTest(unittest.TestCase):
         self.assertNotEqual(self.larp("undo", check=False).returncode, 0)
         self.write("file", b"one\n")
         self.larp("commit")
+        original_branch = self.git("symbolic-ref", "--short", "HEAD").decode().strip()
 
 if __name__ == "__main__":
     unittest.main()
