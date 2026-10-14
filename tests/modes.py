@@ -154,6 +154,7 @@ class ModesTest(unittest.TestCase):
         self.larp("commit")
         self.assertGreater(self.count(), 1)
         self.write("new", b"later staged edit\n")
+        self.git("add", "new")
 
 if __name__ == "__main__":
     unittest.main()
