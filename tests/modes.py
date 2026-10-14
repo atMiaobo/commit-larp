@@ -191,5 +191,6 @@ class ModesTest(unittest.TestCase):
                 self.assertEqual(self.git("write-tree"), staged)
                 self.assertEqual((self.root / "file").read_bytes(), b"one two\nthree four\n")
 
+
 if __name__ == "__main__":
     unittest.main()
