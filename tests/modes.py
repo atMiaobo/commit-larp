@@ -217,5 +217,6 @@ class ModesTest(unittest.TestCase):
         self.assertNotEqual(self.command("git", "rev-parse", "--verify", "HEAD", check=False).returncode, 0)
         self.assertEqual((self.root / "file").read_bytes(), b"two\n")
 
+
 if __name__ == "__main__":
     unittest.main()
