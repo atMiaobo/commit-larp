@@ -52,6 +52,7 @@ state_dir=$(git rev-parse --git-path gitlarp)
 state_file="$state_dir/last-run"
 
 if [[ $1 == undo ]]; then
+    [[ -f $state_file ]] || die 'no recorded commit run to undo.'
 
 if upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null); then
     read -r ahead behind < <(git rev-list --left-right --count "HEAD...$upstream")
