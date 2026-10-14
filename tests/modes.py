@@ -212,6 +212,7 @@ class ModesTest(unittest.TestCase):
         hook = self.root / ".git/hooks/pre-commit"
         hook.write_text("#!/usr/bin/env bash\nexit 1\n")
         hook.chmod(0o755)
+        self.assertNotEqual(self.larp("commit", check=False).returncode, 0)
 
 if __name__ == "__main__":
     unittest.main()
