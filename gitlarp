@@ -68,6 +68,7 @@ if [[ $1 == undo ]]; then
     fi
     rm -f -- "$state_file"
     printf 'Undid %s commit(s). Working files and staging are unchanged.\n' "$count"
+    exit 0
 
 if upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null); then
     read -r ahead behind < <(git rev-list --left-right --count "HEAD...$upstream")
