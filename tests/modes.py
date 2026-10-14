@@ -228,6 +228,7 @@ class ModesTest(unittest.TestCase):
         hook.chmod(0o755)
         self.assertNotEqual(self.larp("commit", check=False).returncode, 0)
         self.assertEqual(self.count(), 2)
+        self.larp("undo")
 
 if __name__ == "__main__":
     unittest.main()
