@@ -189,6 +189,7 @@ class ModesTest(unittest.TestCase):
                 self.assertNotEqual(self.command("git", "rev-parse", "--verify", "HEAD", check=False).returncode, 0)
                 self.assertEqual(self.git("symbolic-ref", "HEAD"), branch)
                 self.assertEqual(self.git("write-tree"), staged)
+                self.assertEqual((self.root / "file").read_bytes(), b"one two\nthree four\n")
 
 if __name__ == "__main__":
     unittest.main()
