@@ -185,6 +185,7 @@ class ModesTest(unittest.TestCase):
                 self.larp("commit")
                 staged = self.git("write-tree")
                 branch = self.git("symbolic-ref", "HEAD")
+                self.larp("undo")
 
 if __name__ == "__main__":
     unittest.main()
