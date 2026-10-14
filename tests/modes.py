@@ -209,6 +209,7 @@ class ModesTest(unittest.TestCase):
         self.larp("commit")
         self.larp("commit")
         self.write("file", b"two\n")
+        hook = self.root / ".git/hooks/pre-commit"
 
 if __name__ == "__main__":
     unittest.main()
