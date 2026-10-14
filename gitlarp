@@ -257,6 +257,7 @@ for path in "${paths[@]}"; do
     fi
     printf -v display_path '%q' "$path"
     git commit --only -m "$action $display_path" -- "$path"
+    record_run
     committed=$((committed + 1))
 done
 printf 'Created %s commit(s).\n' "$committed"
