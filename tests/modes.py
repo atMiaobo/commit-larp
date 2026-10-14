@@ -232,5 +232,6 @@ class ModesTest(unittest.TestCase):
         self.assertEqual(self.git("rev-parse", "HEAD"), base)
         self.assertEqual((self.root / "new").read_bytes(), b"one two three")
 
+
 if __name__ == "__main__":
     unittest.main()
