@@ -55,6 +55,7 @@ if [[ $1 == undo ]]; then
     [[ -f $state_file ]] || die 'no recorded commit run to undo.'
     mapfile -t saved < "$state_file"
     [[ ${#saved[@]} -eq 3 ]] || die 'invalid undo record.'
+    [[ $branch == "${saved[0]}" ]] || die 'switch back to the branch of the last gitlarp run first.'
 
 if upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null); then
     read -r ahead behind < <(git rev-list --left-right --count "HEAD...$upstream")
