@@ -1,5 +1,8 @@
 # gitlarp
 
+<img width="1230" height="350" alt="image" src="https://github.com/user-attachments/assets/045175dc-a8b9-4eb7-91ba-7f1f4f5149c7" />
+
+
 Tiny changes. Many commits. Numbers go up.
 
 ```bash
